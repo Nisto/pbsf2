@@ -1,0 +1,67 @@
+Header
+0x00-0x03: Header size
+0x04-0x07: Table 1 offset
+0x08-0x0B: Table 2 offset
+0x0C-0x0F: Table 3 offset
+0x10-0x13: Table 4 offset
+0x14-0x17: Table 5 offset
+
+
+Table 1 -- Instrument/Zone mapping
+Consists of 16 tables, each representing an instrument
+Each table consists of 128 zone IDs (each zone ID being 16 bits)
+The index of each zone ID effectively identifies a MIDI key number (0-127)
+Tables containing only 0xFFFF should be ignored (instrument ID shall not increment with it)
+
+
+Table 2 -- Zone info
+Entry size: 24 bytes
+0x00     : base note
+0x01-0x07: ? (always 0)
+0x08-0x0B: loop start/end/length?
+0x0C-0x0F: loop start/end/length?
+0x10-0x13: zone ID
+0x14-0x17: sample ID
+
+
+Table 3 -- ?
+Entry size: 80 bytes
+
+
+Table 4 -- Sample info
+Entry size: 16 bytes
+0x00-0x01: channels?
+0x02-0x03: sample rate
+0x04-0x07: sample offset (in units of samples)
+0x08-0x0B: sample size (in units of samples)
+0x0C-0x0D: sample ID
+0x0E-0x0F: ? (always 0)
+
+
+Table 5 -- DSPADPCM decode info? (irrelevant to us if so, since actual samples are RAW PCM)
+Entry size: 46 bytes
+
+
+
+---------------------------
+
+
+pokemon_se.spt
+
+
+Header
+0x00-0x03: sample count
+
+
+Table 1 -- sample info
+Entry size: 28 bytes
+0x00-0x05: ?
+0x06-0x07: sample rate
+0x08-0x0F: ?
+0x10-0x13: unknown offset/size
+0x14-0x17: unknown offset/size
+0x18-0x1B: ?
+
+
+Table 2 -- DSPADPCM decode info?
+Entry size: 46 bytes
